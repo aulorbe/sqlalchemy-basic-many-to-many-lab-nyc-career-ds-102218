@@ -1,13 +1,15 @@
-from models import *
+from seed import *
 
 def return_christian_bales_roles(session):
-    pass
-    # Return a list of Christian Bale role instances
+    return session.query(Role).join(ActorRole).join(Actor).filter(Actor.name == 'Christian Bale').all()
+
+
 
 def return_catwoman_actors(session):
-    pass
-    #  Return a list of actor instances that have played Catwoman
+    return session.query(Actor).join(ActorRole).join(Role).filter(Role.character=='Catwoman').all()
+
+
+
 
 def return_number_of_batman_actors(session):
-    pass
-    # Return the number of actors that have played Batman
+    return len(session.query(Actor).join(ActorRole).join(Role).filter(Role.character=='Batman').all())
